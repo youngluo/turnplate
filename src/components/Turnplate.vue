@@ -3,6 +3,7 @@
     <li
       class="turnplate-item"
       v-for="i in count"
+      @click="onStart"
       :key="i"
     >
       {{i === 5 ? placeholder : i}}
@@ -19,7 +20,13 @@ export default class Turnplate extends Vue {
 
   @Prop() private dataSource: [] = [];
 
+  @Prop() private target: [] = [];
+
   count: number = 9;
+
+  onStart() {
+
+  }
 }
 </script>
 
