@@ -1,69 +1,73 @@
 <template>
-  <!-- <div>
-    <router-link to="/">index</router-link>
-    <router-link to="/vue">vue</router-link>
-    <router-view />
-  </div> -->
-  <Layout>
-    <i-header />
-    <Layout>
+  <Layout class="wrapper">
+    <div class="header">
+      <i-menu
+        active-name="css-snippets"
+        :dataList="topNav"
+        mode="horizontal"
+        class="menu"
+      />
+    </div>
+    <Layout class="container">
       <Sider
-        hide-trigger
         :style="{background: '#fff'}"
+        hide-trigger
       >
-        <Menu
-          active-name="1-2"
-          theme="light"
-          width="auto"
-          :open-names="['1']"
-        >
-          <Submenu name="1">
-            <template slot="title">
-              <Icon type="ios-navigate"></Icon>
-              Item 1
-            </template>
-            <MenuItem name="1-1">Option 1</MenuItem>
-            <MenuItem name="1-2">Option 2</MenuItem>
-            <MenuItem name="1-3">Option 3</MenuItem>
-          </Submenu>
-          <Submenu name="2">
-            <template slot="title">
-              <Icon type="ios-keypad"></Icon>
-              Item 2
-            </template>
-            <MenuItem name="2-1">Option 1</MenuItem>
-            <MenuItem name="2-2">Option 2</MenuItem>
-          </Submenu>
-          <Submenu name="3">
-            <template slot="title">
-              <Icon type="ios-analytics"></Icon>
-              Item 3
-            </template>
-            <MenuItem name="3-1">Option 1</MenuItem>
-            <MenuItem name="3-2">Option 2</MenuItem>
-          </Submenu>
-        </Menu>
+        <i-menu
+          :style="{height: '100%'}"
+          :dataList="leftNav"
+          active-name="wave"
+        />
       </Sider>
-      <Layout :style="{padding: '0 24px 24px'}">
-        <Breadcrumb :style="{margin: '24px 0'}">
-          <BreadcrumbItem>Home</BreadcrumbItem>
-          <BreadcrumbItem>Components</BreadcrumbItem>
-          <BreadcrumbItem>Layout</BreadcrumbItem>
-        </Breadcrumb>
-        <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
-          Content
-        </Content>
-      </Layout>
+      <Content :style="{padding: '24px', background: '#fff'}">
+        Content
+      </Content>
     </Layout>
   </Layout>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import IHeader from './containers/IHeader.vue'
+import IMenu from './containers/Menu.vue'
 
 @Component({
-  components: { IHeader }
+  components: { IMenu }
 })
-export default class App extends Vue { }
+export default class App extends Vue {
+  topNav = [
+    { name: 'css-snippets', path: '/css-snippets', icon: 'md-code' }
+  ]
+
+  leftNav = [
+    { name: 'wave', path: '/wave', icon: 'wave' }
+  ]
+}
 </script>
+
+<style lang="scss">
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-top: 76px;
+}
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 0 50px;
+  z-index: 999;
+  display: flex;
+  justify-content: flex-end;
+  background: #fff;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+}
+.menu {
+  &.ivu-menu-horizontal.ivu-menu-light:after {
+    display: none;
+  }
+}
+.container {
+  flex: 1;
+}
+</style>
