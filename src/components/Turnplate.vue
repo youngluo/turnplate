@@ -30,7 +30,7 @@ export default class Turnplate extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .turnplate {
   list-style: none;
   display: grid;

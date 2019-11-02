@@ -3,6 +3,7 @@
     :active-name="activeName"
     :width="width"
     :mode="mode"
+    class="i-menu"
   >
     <router-link
       v-for="item in dataList"
@@ -11,7 +12,7 @@
     >
       <MenuItem :name="item.name">
       <Icon :type="item.icon" />
-      {{item.name}}
+      {{item.text || item.name}}
       </MenuItem>
     </router-link>
   </Menu>
@@ -24,6 +25,7 @@ interface Item {
   icon: string;
   name: string;
   path: string;
+  text: string;
 }
 
 @Component
@@ -37,3 +39,9 @@ export default class IMenu extends Vue {
   @Prop({ default: 'auto' }) readonly width!: string
 }
 </script>
+
+<style lang="scss" scoped>
+.i-menu.ivu-menu-horizontal.ivu-menu-light:after {
+  display: none;
+}
+</style>

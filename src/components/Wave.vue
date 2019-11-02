@@ -1,13 +1,11 @@
 <template>
-  <div class="container">
-    <button
-      :class="['button', {'wave': isWave}]"
-      @animationend="onAnimationend"
-      @click="onClick"
-    >
-      <slot />
-    </button>
-  </div>
+  <button
+    :class="['button', {'wave': isWave}]"
+    @animationend="onAnimationend"
+    @click="onClick"
+  >
+    <slot />
+  </button>
 </template>
 
 <script lang="ts">
@@ -27,11 +25,7 @@ export default class Wave extends Vue {
 }
 </script>
 
-<style lang="scss">
-.container {
-  margin-top: 50px;
-  text-align: center;
-}
+<style lang="scss" scoped>
 $color: #1890ff;
 .button {
   position: relative;

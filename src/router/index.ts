@@ -11,9 +11,16 @@ const routes = [
     component: index
   },
   {
-    path: '/vue',
-    name: 'vue',
-    component: () => import(/* webpackChunkName: "vue" */ '../pages/vue/index.vue')
+    path: '/css-snippets',
+    name: 'css-snippets',
+    component: () => import(/* webpackChunkName: "css-snippets" */ '../pages/css-snippets/index.vue'),
+    children: [
+      {
+        name: 'wave',
+        path: '',
+        component: () => import(/* webpackChunkName: "css-snippets-wave" */ '../pages/css-snippets/wave.vue')
+      }
+    ]
   }
 ]
 
